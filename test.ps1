@@ -19,7 +19,7 @@
 #
 
 param(
-	$ConnectionString = 'Data Source=10.1.2.12;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=changeit',
+	$ConnectionString = 'Data Source=localhost;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=changeit',
 	$CommandText = 'SELECT @@VERSION AS VERSION'
 )
 

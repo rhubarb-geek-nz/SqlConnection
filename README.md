@@ -1,6 +1,6 @@
 # SqlConnection
 
-Very simple PowerShell module for creating a connection to an MSSQL database.
+Very simple `PowerShell` module for creating a connection to an `MSSQL` database.
 
 Build using the `package.ps1` script to create the `SqlConnection.zip` file.
 

@@ -20,7 +20,7 @@
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
-$BINDIR = "bin/Release/netstandard2.1"
+$BINDIR = "bin/Release/netstandard2.0"
 
 trap
 {

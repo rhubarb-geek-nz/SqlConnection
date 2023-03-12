@@ -20,14 +20,16 @@
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
-$BINDIR = "bin/Release/netstandard2.0"
+$Version = "1.0.0.0"
+$ModuleName = "SqlConnection"
+$ZipName ="$ModuleName-$Version.zip"
 
 trap
 {
 	throw $PSItem
 }
 
-foreach ($Name in "obj", "bin", "SqlConnection", "SqlConnection.zip")
+foreach ($Name in "$ModuleName", "$ZipName")
 {
 	if (Test-Path "$Name")
 	{
@@ -35,17 +37,27 @@ foreach ($Name in "obj", "bin", "SqlConnection", "SqlConnection.zip")
 	} 
 }
 
-dotnet build SqlConnection.csproj --configuration Release
+$null = New-Item -Path "$ModuleName" -ItemType Directory
 
-If ( $LastExitCode -ne 0 )
-{
-	Exit $LastExitCode
+Copy-Item -Path "$ModuleName.psm1" -Destination "$ModuleName"
+
+@"
+@{
+	RootModule = '$ModuleName.psm1'
+	ModuleVersion = '$Version'
+	GUID = '07e04d22-1389-4f44-b87a-2166e4bc7c4c'
+	Author = 'Roger Brown'
+	CompanyName = 'rhubarb-geek-nz'
+	Copyright = '(c) Roger Brown. All rights reserved.'
+	FunctionsToExport = @('New-$ModuleName')
+	CmdletsToExport = @()
+	VariablesToExport = '*'
+	AliasesToExport = @()
+	PrivateData = @{
+		PSData = @{
+		}
+	}
 }
+"@ | Set-Content -Path "$ModuleName/$ModuleName.psd1"
 
-$null = New-Item -Path "SqlConnection" -ItemType Directory
-
-Get-ChildItem -Path "$BINDIR" -Filter "Sql*" | Foreach-Object {
-	Copy-Item -Path $_.FullName -Destination "SqlConnection"
-}
-
-Compress-Archive -Path "SqlConnection" -DestinationPath "SqlConnection.zip"
+Compress-Archive -Path "$ModuleName" -DestinationPath "$ZipName"

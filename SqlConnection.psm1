@@ -20,7 +20,7 @@
 function New-SqlConnection
 {
 	param( [string]$ConnectionString = $null )
-	return New-Object System.Data.SqlClient.SqlConnection -ArgumentList "$ConnectionString"
+	return New-Object System.Data.SqlClient.SqlConnection -ArgumentList $ConnectionString
 }
 
 Export-ModuleMember -Function New-SqlConnection

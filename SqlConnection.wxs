@@ -26,6 +26,9 @@
   </Fragment>
   <Fragment>
     <ComponentGroup Id="ProductComponents">
+      <Component Id="CLicense" Guid="*" Directory="INSTALLDIR2" Win64="$(env.MSSQLISWIN64)">
+        <File Id="FLicense" KeyPath="yes" Source="$(env.SOURCEDIR)\LICENSE" />
+      </Component>
       <Component Id="CSqlConnectionPsm1" Guid="*" Directory="INSTALLDIR2" Win64="$(env.MSSQLISWIN64)">
         <File Id="FSqlConnectionPsm1" KeyPath="yes" Source="$(env.SOURCEDIR)\SqlConnection.psm1" />
       </Component>

@@ -20,7 +20,7 @@
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
-$Version = "1.0.0.0"
+$Version = "1.0"
 $ModuleName = "SqlConnection"
 $ZipName ="$ModuleName-$Version.zip"
 
@@ -59,5 +59,9 @@ Copy-Item -Path "$ModuleName.psm1" -Destination "$ModuleName"
 	}
 }
 "@ | Set-Content -Path "$ModuleName/$ModuleName.psd1"
+
+$content = [System.IO.File]::ReadAllText("LICENSE")
+
+$content.Replace("`u{000D}`u{000A}","`u{000A}") | Out-File "$ModuleName/LICENSE" -Encoding Ascii -NoNewLine
 
 Compress-Archive -Path "$ModuleName" -DestinationPath "$ZipName"

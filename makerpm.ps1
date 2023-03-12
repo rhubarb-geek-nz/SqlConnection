@@ -79,6 +79,7 @@ PowerShell Cmdlet for connection to MSSQL databases
 %files
 %defattr(-,root,root)
 %dir %attr(555,root,root) /$ModulesPath/$ModuleName
+%attr(444,root,root)      /$ModulesPath/$ModuleName/LICENSE
 %attr(444,root,root)      /$ModulesPath/$ModuleName/$ModuleName.psm1
 %attr(444,root,root)      /$ModulesPath/$ModuleName/$ModuleName.psd1
 

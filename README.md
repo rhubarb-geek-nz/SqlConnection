@@ -15,3 +15,11 @@ VERSION
 Microsoft SQL Server 2022 (RTM) - 16.0.1000.6 (X64) …
 
 ```
+The following scripts can be used to make formal packages for specific RID.
+
+| Script | RID | Installation Directory |
+| ------ | --- | ---------------------- |
+| makemsi.ps1 | win | c:\Program Files\WindowsPowerShell\Modules\SqlConnection |
+| makeosx.ps1 | osx | /usr/local/share/powershell/Modules/SqlConnection |
+| makedeb.ps1 | linux | /opt/microsoft/powershell/7/Modules/SqlConnection |
+| makerpm.ps1 | linux | /opt/microsoft/powershell/7/Modules/SqlConnection |

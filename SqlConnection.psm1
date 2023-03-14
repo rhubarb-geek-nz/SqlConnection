@@ -19,7 +19,10 @@
 
 function New-SqlConnection
 {
-	param( [string]$ConnectionString = $null )
+	param(
+		[Parameter(Mandatory=$true)]
+		[string]$ConnectionString
+	)
 	return New-Object System.Data.SqlClient.SqlConnection -ArgumentList $ConnectionString
 }
 

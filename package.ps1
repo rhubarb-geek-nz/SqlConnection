@@ -20,7 +20,7 @@
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
-$Version = "1.0"
+$Version = "1.0.1"
 $ModuleName = "SqlConnection"
 $ZipName ="$ModuleName-$Version.zip"
 

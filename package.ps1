@@ -20,16 +20,20 @@
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
-$Version = "1.0.1"
 $ModuleName = "SqlConnection"
-$ZipName ="$ModuleName-$Version.zip"
+
+$xmlDoc = [System.Xml.XmlDocument](Get-Content "$ModuleName.nuspec")
+
+$Version = $xmlDoc.SelectSingleNode("/package/metadata/version").FirstChild.Value
+$CompanyName = $xmlDoc.SelectSingleNode("/package/metadata/authors").FirstChild.Value
+$ModuleId = $xmlDoc.SelectSingleNode("/package/metadata/id").FirstChild.Value
 
 trap
 {
 	throw $PSItem
 }
 
-foreach ($Name in "$ModuleName", "$ZipName")
+foreach ($Name in "$ModuleId")
 {
 	if (Test-Path "$Name")
 	{
@@ -37,9 +41,9 @@ foreach ($Name in "$ModuleName", "$ZipName")
 	} 
 }
 
-$null = New-Item -Path "$ModuleName" -ItemType Directory
+$null = New-Item -Path "$ModuleId" -ItemType Directory
 
-Copy-Item -Path "$ModuleName.psm1" -Destination "$ModuleName"
+Copy-Item -Path "$ModuleName.psm1" -Destination "$ModuleId"
 
 @"
 @{
@@ -47,9 +51,9 @@ Copy-Item -Path "$ModuleName.psm1" -Destination "$ModuleName"
 	ModuleVersion = '$Version'
 	GUID = '07e04d22-1389-4f44-b87a-2166e4bc7c4c'
 	Author = 'Roger Brown'
-	CompanyName = 'rhubarb-geek-nz'
+	CompanyName = '$CompanyName'
 	Copyright = '(c) Roger Brown. All rights reserved.'
-	FunctionsToExport = @('New-$ModuleName')
+	FunctionsToExport = @('New-SqlConnection')
 	CmdletsToExport = @()
 	VariablesToExport = '*'
 	AliasesToExport = @()
@@ -58,10 +62,13 @@ Copy-Item -Path "$ModuleName.psm1" -Destination "$ModuleName"
 		}
 	}
 }
-"@ | Set-Content -Path "$ModuleName/$ModuleName.psd1"
+"@ | Set-Content -Path "$ModuleId/$ModuleId.psd1"
 
-$content = [System.IO.File]::ReadAllText("LICENSE")
+(Get-Content "./README.md")[0..2] | Set-Content -Path "$ModuleId/README.md"
 
-$content.Replace("`u{000D}`u{000A}","`u{000A}") | Out-File "$ModuleName/LICENSE" -Encoding Ascii -NoNewLine
+nuget pack "$ModuleName.nuspec"
 
-Compress-Archive -Path "$ModuleName" -DestinationPath "$ZipName"
+If ( $LastExitCode -ne 0 )
+{
+	Exit $LastExitCode
+}

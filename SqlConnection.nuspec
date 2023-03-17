@@ -2,11 +2,10 @@
 <package >
   <metadata>
     <id>rhubarb-geek-nz.SqlConnection</id>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <authors>rhubarb-geek-nz</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">LGPL-3.0-or-later</license>
-    <!-- <icon>icon.png</icon> -->
     <readme>README.md</readme>
     <projectUrl>https://github.com/rhubarb-geek-nz/SqlConnection</projectUrl>
     <description>MSSQL Connection Tool</description>
@@ -15,8 +14,8 @@
     <tags>New-SqlConnection</tags>
   </metadata>
   <files>
-     <file src="rhubarb-geek-nz.SqlConnection/README.md" target="README.md" />
-     <file src="rhubarb-geek-nz.SqlConnection/SqlConnection.psm1" target="SqlConnection.psm1" />
-     <file src="rhubarb-geek-nz.SqlConnection/rhubarb-geek-nz.SqlConnection.psd1" target="rhubarb-geek-nz.SqlConnection.psd1" />
+     <file src="rhubarb-geek-nz.SqlConnection\README.md" target="" />
+     <file src="rhubarb-geek-nz.SqlConnection\*.psm1" target="" />
+     <file src="rhubarb-geek-nz.SqlConnection\*.psd1" target="" />
   </files>
 </package>

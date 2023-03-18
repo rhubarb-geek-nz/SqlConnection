@@ -18,15 +18,22 @@
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>
 #
 
+param(
+	$ModuleName = "SqlConnection",
+	$CompanyName = "rhubarb-geek-nz"
+)
+
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
-$ModuleName = "SqlConnection"
 
 $xmlDoc = [System.Xml.XmlDocument](Get-Content "$ModuleName.nuspec")
 
 $Version = $xmlDoc.SelectSingleNode("/package/metadata/version").FirstChild.Value
-$CompanyName = $xmlDoc.SelectSingleNode("/package/metadata/authors").FirstChild.Value
 $ModuleId = $xmlDoc.SelectSingleNode("/package/metadata/id").FirstChild.Value
+$Author = $xmlDoc.SelectSingleNode("/package/metadata/authors").FirstChild.Value
+$ProjectUri = $xmlDoc.SelectSingleNode("/package/metadata/projectUrl").FirstChild.Value
+$Description = $xmlDoc.SelectSingleNode("/package/metadata/description").FirstChild.Value
+$Copyright = $xmlDoc.SelectSingleNode("/package/metadata/copyright").FirstChild.Value
 
 trap
 {
@@ -50,25 +57,20 @@ Copy-Item -Path "$ModuleName.psm1" -Destination "$ModuleId"
 	RootModule = '$ModuleName.psm1'
 	ModuleVersion = '$Version'
 	GUID = '07e04d22-1389-4f44-b87a-2166e4bc7c4c'
-	Author = 'Roger Brown'
+	Author = '$Author'
 	CompanyName = '$CompanyName'
-	Copyright = '(c) Roger Brown. All rights reserved.'
+	Copyright = '$Copyright'
+	Description = '$Description'
 	FunctionsToExport = @('New-SqlConnection')
 	CmdletsToExport = @()
 	VariablesToExport = '*'
 	AliasesToExport = @()
 	PrivateData = @{
 		PSData = @{
+			ProjectUri = '$ProjectUri'
 		}
 	}
 }
 "@ | Set-Content -Path "$ModuleId/$ModuleId.psd1"
 
 (Get-Content "./README.md")[0..2] | Set-Content -Path "$ModuleId/README.md"
-
-nuget pack "$ModuleName.nuspec"
-
-If ( $LastExitCode -ne 0 )
-{
-	Exit $LastExitCode
-}

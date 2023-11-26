@@ -2,9 +2,7 @@
 
 Very simple `PowerShell` module for creating a connection to an `MSSQL` database.
 
-Build using the `package.ps1` script to create the module.
-
-Install by copying into a directory on the [PSModulePath](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psmodulepath)
+Install by copying the module into a directory on the [PSModulePath](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psmodulepath)
 
 Create a test database.
 

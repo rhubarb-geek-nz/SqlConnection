@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>RhubarbGeekNz.SqlConnection</AssemblyName>
     <Copyright>Copyright &#169; 2024 Roger Brown</Copyright>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <AssemblyTitle>PowerShell Cmdlet for SqlConnection</AssemblyTitle>
     <Product>SqlConnection for PowerShell</Product>
     <Company>rhubarb-geek-nz</Company>
@@ -47,6 +47,21 @@
       <FilesToDelete Include="$(PublishDir)*.deps.json" />
       <FilesToDelete Include="$(PublishDir)*.pdb" />
       <FilesToDelete Include="$(PublishDir)Microsoft.Data.SqlClient.dll" />
+      <FilesToDelete Include="$(PublishDir)Microsoft.Bcl.AsyncInterfaces.dll" />
+      <FilesToDelete Include="$(PublishDir)Microsoft.Win32.SystemEvents.dll" />
+      <FilesToDelete Include="$(PublishDir)System.Configuration.ConfigurationManager.dll" />
+      <FilesToDelete Include="$(PublishDir)System.Diagnostics.DiagnosticSource.dll" />
+      <FilesToDelete Include="$(PublishDir)System.Drawing.Common.dll" />
+      <FilesToDelete Include="$(PublishDir)System.Runtime.Caching.dll" />
+      <FilesToDelete Include="$(PublishDir)System.Security.Cryptography.ProtectedData.dll" />
+      <FilesToDelete Include="$(PublishDir)System.Security.Permissions.dll" />
+      <FilesToDelete Include="$(PublishDir)System.Windows.Extensions.dll" />
+      <FilesToDelete Include="$(PublishDir)runtimes\unix\lib\net6.0\System.Drawing.Common.dll" />
+      <FilesToDelete Include="$(PublishDir)runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" />
+      <FilesToDelete Include="$(PublishDir)runtimes\win\lib\net6.0\System.Drawing.Common.dll" />
+      <FilesToDelete Include="$(PublishDir)runtimes\win\lib\net6.0\System.Runtime.Caching.dll" />
+      <FilesToDelete Include="$(PublishDir)runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" />
+      <FilesToDelete Include="$(PublishDir)runtimes\win\lib\net6.0\System.Windows.Extensions.dll" />
     </ItemGroup>
     <Delete Files="@(FilesToDelete)" />
     <Exec Command="dotnet tool restore" />

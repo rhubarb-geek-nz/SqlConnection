@@ -7,7 +7,7 @@ This packages the new [Microsoft.Data.SqlClient](https://www.nuget.org/packages/
 Build the module with
 
 ```
-$ dotnet publish --configuration Release --framework net6.0
+$ dotnet publish --configuration Release
 ```
 
 Install by copying the module into a directory on the [PSModulePath](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_psmodulepath)

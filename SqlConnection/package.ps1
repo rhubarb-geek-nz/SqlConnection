@@ -92,7 +92,7 @@ Get-ChildItem -LiteralPath $PublishDir -Filter '*.dll' | ForEach-Object {
 
 foreach ($Filter in '??','??-*') {
 	Get-ChildItem -LiteralPath $PublishDir -Filter $Filter -Directory | ForEach-Object {
-		Move-Item $_.FullName $LibDir
+		Remove-Item $_.FullName -Recurse
 	}
 }
 
